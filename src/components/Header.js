@@ -14,7 +14,7 @@ function Header(props) {
 
     return (
         <div className="header">
-            <img className="header__image" src='/images/triangles.png'
+            <img className="header__image" src='images/triangles.png'
                  alt="Logo Triangles"/>
             {header}
             <div className="header__line"/>

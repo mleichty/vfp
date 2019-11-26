@@ -28,7 +28,7 @@ function About() {
         " elit. Ad delectus doloribus error explicabo facilis impedit inventore " +
         "ipsa laboriosam laudantium molestiae nulla officia porro praesentium " +
         "quia, quo quos sequi similique soluta.";
-    let section2_img = "/images/placeholder.png";
+    let section2_img = "images/placeholder.png";
 
     let section3_title = "Yet another header here";
     let section3_body1 = "Lorem ipsum dolor sit amet, consectetur adipisicing" +

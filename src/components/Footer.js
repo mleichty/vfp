@@ -11,16 +11,16 @@ function Footer() {
         <div className="footer">
             <div className="footer__third footer__third--left">
                 <img
-                    src="/images/vfp-logo.png" alt=""/>
+                    src="images/vfp-logo.png" alt=""/>
             </div>
             <div className="footer__third footer__third--mid">
                 <h4>Popular Virgin Forests</h4>
                 <div className="footer__forestDiv">
-                    <img className="footer__forest" src="/images/Forest1.jpg"
+                    <img className="footer__forest" src="images/Forest1.jpg"
                          alt=""/>
-                    <img className="footer__forest" src="/images/Forest2.jpg"
+                    <img className="footer__forest" src="images/Forest2.jpg"
                          alt=""/>
-                    <img className="footer__forest" src="/images/Forest3.jpg"
+                    <img className="footer__forest" src="images/Forest3.jpg"
                          alt=""/>
                 </div>
                 <div className="footer__input">
