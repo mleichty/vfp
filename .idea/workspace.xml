@@ -25,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/video" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,9 +38,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\src\images" />
+      <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\public" />
       <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\src\video" />
       <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\src\fonts" />
-      <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\src\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -81,7 +82,11 @@
       <option name="presentableId" value="Default" />
       <updated>1572819786427</updated>
       <workItem from="1572819788167" duration="23747000" />
-      <workItem from="1572876478202" duration="359000" />
+      <workItem from="1572876478202" duration="1178000" />
+      <workItem from="1572892585154" duration="1605000" />
+      <workItem from="1574521134793" duration="19319000" />
+      <workItem from="1574695552525" duration="15063000" />
+      <workItem from="1574716487106" duration="5061000" />
     </task>
     <servers />
   </component>
