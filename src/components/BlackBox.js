@@ -20,12 +20,18 @@ function BlackBox(props) {
         body2 = <div className="blackBox__multi">{props.body2}</div>
     }
 
+    let body3;
+    if(props.body3) {
+        body3 = <div className="blackBox__multi">{props.body3}</div>
+    }
+
     return (
         <div className="blackBox">
             {header}
             {image}
             <div>{props.body}</div>
             {body2}
+            {body3}
         </div>
     )
 }

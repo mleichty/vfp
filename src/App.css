@@ -260,6 +260,32 @@ a {
 }
 
 /****************************************/
+/*Quote styles*/
+.quote {
+  margin-bottom: 50px;
+  border-left: 5px solid var(--orange);
+  padding-left: 20px;
+}
+
+.quote__body {
+  /*color: var(--orange);*/
+}
+
+.quote__body--quote {
+  font-size: 45px;
+}
+
+.quote__body--src {
+  font-style: italic;
+  /*color: var(--orange);*/
+}
+
+.quote__body--auth {
+  margin-top: 20px;
+  text-align: right;
+}
+
+/****************************************/
 /*About Page styles*/
 .aboutPage {
   background: no-repeat center fixed;
