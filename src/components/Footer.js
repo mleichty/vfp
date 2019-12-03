@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from "./Search";
 
 function Footer() {
 
@@ -23,10 +24,7 @@ function Footer() {
                     <img className="footer__forest" src="images/Forest3.jpg"
                          alt=""/>
                 </div>
-                <div className="footer__input">
-                    <input type="text" placeholder="Search the Database..."/>
-                    <input type="submit"/>
-                </div>
+                <Search/>
             </div>
             <div className="footer__third footer__third--right">
                 <h4>Interested in adding to the database?</h4>

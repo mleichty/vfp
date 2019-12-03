@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "./Header";
+import Search from "./Search";
 
 function BlackBox(props) {
 
@@ -25,13 +26,55 @@ function BlackBox(props) {
         body3 = <div className="blackBox__multi">{props.body3}</div>
     }
 
+    let search;
+    if(props.search) {
+        search = <Search/>
+    }
+
+    let resources;
+    if(props.resources) {
+        resources = <div className="blackBox__links">
+            <ul>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link blackBox__link" href="#" target="_blank">Test Link</a></li>
+                <li><a className="link" href="#" target="_blank">Test Link</a></li>
+            </ul>
+        </div>
+    }
+
+    let contact;
+    if(props.contact) {
+        contact = <div className="form__input form__input--blackBox">
+            <input type="text" placeholder="First Name"/>
+            <input type="text" placeholder="Last Name"/>
+            <input type="email" placeholder="Email"/>
+            <input type="phone" placeholder="Phone Number"/>
+            <textarea placeholder="Your Message..."/>
+        </div>
+    }
+
     return (
         <div className="blackBox">
             {header}
             {image}
-            <div>{props.body}</div>
+            <div className="blackBox__multi">{props.body}</div>
             {body2}
             {body3}
+            {search}
+            {resources}
+            {contact}
         </div>
     )
 }

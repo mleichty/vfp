@@ -1,16 +1,33 @@
 import React from 'react';
 import './App.css';
-import Nav from "./components/Nav";
 import Home from "./components/Home";
 import About from "./components/About";
+import Database from "./components/Database";
+import Gallery from "./components/Gallery";
+import Resources from "./components/Resources";
+import Contact from "./components/Contact";
 import {
     HashRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
+import $ from "jquery";
 
 function App() {
+
+    $(window).scroll(function () {
+        let scroll = $(window).scrollTop();
+        // if (scroll > 100) {
+        $('.background__filter').css({
+            backdropFilter: "blur(" + (scroll / 30) + "px)"
+        })
+        // } else {
+        //     $('.aboutPage__filter').css({
+        //         backdropFilter: "none"
+        //     })
+        // }
+    });
 
     return (
         <div>
@@ -26,10 +43,10 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/About" component={About}/>
-                    {/*<Route path="/gallery" component={Gallery}/>*/}
-                    {/*<Route path="/database" component={Database}/>*/}
-                    {/*<Route path="/resources" component={Resources}/>*/}
-                    {/*<Route path="/contact" component={Contact}/>*/}
+                    <Route path="/gallery" component={Gallery}/>
+                    <Route path="/database" component={Database}/>
+                    <Route path="/resources" component={Resources}/>
+                    <Route path="/contact" component={Contact}/>
                 </Switch>
             </Router>
         </div>

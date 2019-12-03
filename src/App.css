@@ -36,7 +36,7 @@ body, p {
   font-family: GloberBook;
 }
 
-/* links, buttons*/
+/* links, buttons, background*/
 a {
   text-decoration: none;
 }
@@ -58,9 +58,56 @@ a {
 /* keep for now, will prob need to change when*/
 /* have animations on background or video*/
 .background {
-  background: no-repeat center;
+  background: no-repeat center fixed;
   background-size: cover;
   min-height: 100vh;
+  /*position: relative;*/
+}
+
+.background__filter {
+  display: flex;
+  flex-direction: column;
+  /*position: relative;*/
+}
+
+.background__half {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-around;*/
+  align-items: center;
+}
+
+.background__half--content {
+  padding: 100px 100px 0 100px;
+  min-height: 100vh;
+}
+
+.background__full {
+  display: flex;
+  width: 100%;
+}
+
+.background__full--scroll {
+  overflow-x: auto;
+  margin-bottom: -20px;
+  /*position: relative;*/
+}
+
+.background__scroll {
+  position: fixed;
+  display: none;
+  /*bottom: 250px;*/
+  padding: 20px;
+  background-color: var(--blackTrans);
+}
+
+.background__scroll--left {
+  left: 0;
+}
+
+.background__scroll--right {
+  right: 0;
 }
 
 /*.App__fullscreen {*/
@@ -197,24 +244,37 @@ a {
   width: 30%;
 }
 
-.footer__input input {
+/****************************************/
+/*Form styles*/
+.form__input input, .form__input textarea {
   color: var(--textColor);
   background: transparent;
   border: 2px solid var(--blue);
   padding: 5px 10px;
+  /*margin: 5px;*/
+  margin: 10px 0;
 }
 
-.footer__input input:focus {
+.form__input input:focus, .form__input textarea:focus {
   outline: none;
 }
 
-.footer__input input[type=submit]:hover {
-  cursor: pointer;
-  background-color: var(--blue);
+.form__input input::placeholder, .form__input textarea::placeholder{
+  color: var(--textColor);
 }
 
-.footer__input input::placeholder{
-  color: var(--textColor);
+.form__input--blackBox input {
+  width: 50%;
+}
+
+.form__input textarea {
+  width: 100%;
+  height: 200px;
+}
+
+.form__input input[type=submit]:hover {
+  cursor: pointer;
+  background-color: var(--blue);
 }
 
 
@@ -228,7 +288,7 @@ a {
 }
 
 .header__image {
-  width: 100px;
+  width: 90px;
   margin-bottom: 10px;
 }
 
@@ -243,6 +303,7 @@ a {
 /*Black Box styles*/
 .blackBox {
   background-color: var(--blackTrans);
+  width: 100%;
   padding: 30px;
   display: flex;
   margin-bottom: 50px;
@@ -256,7 +317,25 @@ a {
 }
 
 .blackBox__multi {
-  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.blackBox__links {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+}
+
+.blackBox__links ul {
+  list-style-type: square;
+}
+
+.blackBox__links li {
+  margin: 10px;
+  color: var(--orange);
+}
+
+.blackBox__link {
+  color: var(--orange);
 }
 
 /****************************************/
@@ -272,7 +351,9 @@ a {
 }
 
 .quote__body--quote {
-  font-size: 45px;
+  font-size: 35px;
+  text-align: center;
+  font-style: italic;
 }
 
 .quote__body--src {
@@ -287,24 +368,30 @@ a {
 
 /****************************************/
 /*About Page styles*/
-.aboutPage {
-  background: no-repeat center fixed;
-  background-size: cover;
-  min-height: 100vh;
+
+/****************************************/
+/*Database Page styles*/
+.database__pic {
+  height: 400px;
+  margin: 50px 50px 80px 0;
 }
 
-.aboutPage__filter {
-  display: flex;
-}
-
-.aboutPage__half {
-  width: 50%;
+/****************************************/
+/*Gallery Page styles*/
+.gallery {
   display: flex;
   flex-direction: column;
-  /*justify-content: space-around;*/
-  align-items: center;
+  /*height: 100vh;*/
 }
 
-.aboutPage__half--content {
-  padding: 100px 100px 0 100px;
+.gallery__pic {
+  height: 93vh;
+}
+
+.gallery__title {
+  background-color: var(--darkGreen);
+  text-align: center;
+  padding: 10px 0;
+  height: 10vh;
+  border-bottom: 2px solid var(--orange);
 }
