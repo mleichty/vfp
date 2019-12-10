@@ -88,18 +88,13 @@ a {
   width: 100%;
 }
 
-.background__full--scroll {
-  overflow-x: auto;
-  margin-bottom: -20px;
-  /*position: relative;*/
-}
-
 .background__scroll {
   position: fixed;
   display: none;
   /*bottom: 250px;*/
   padding: 20px;
   background-color: var(--blackTrans);
+  cursor: pointer;
 }
 
 .background__scroll--left {
@@ -354,6 +349,7 @@ a {
   font-size: 35px;
   text-align: center;
   font-style: italic;
+  /*color: var(--orange);*/
 }
 
 .quote__body--src {
@@ -371,27 +367,46 @@ a {
 
 /****************************************/
 /*Database Page styles*/
-.database__pic {
+.database__forest {
   height: 400px;
+  min-width: 600px;
   margin: 50px 50px 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: no-repeat center;
+  background-size: cover;
+}
+
+.database__name {
+  background-color: var(--blackTrans);
+  padding: 10px;
 }
 
 /****************************************/
 /*Gallery Page styles*/
 .gallery {
+  background-color: var(--black);
+  display: flex;
+}
+
+.gallery__picDiv {
   display: flex;
   flex-direction: column;
-  /*height: 100vh;*/
+  align-items: center;
+  width: 99vw;
 }
 
 .gallery__pic {
   height: 93vh;
+  display: block;
 }
 
 .gallery__title {
   background-color: var(--darkGreen);
   text-align: center;
-  padding: 10px 0;
-  height: 10vh;
-  border-bottom: 2px solid var(--orange);
+  /*padding: 10px 0;*/
+  line-height: 7vh;
+  height: 7vh;
+  width: 100%;
 }

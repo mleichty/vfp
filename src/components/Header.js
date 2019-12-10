@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function Header(props) {
     let header;
-    if(props.h1) {
+    if (props.h1) {
         header = <h1 className="header__title">
             {props.title}
         </h1>
@@ -14,8 +15,10 @@ function Header(props) {
 
     return (
         <div className="header">
-            <img className="header__image" src='images/triangles.png'
-                 alt="Logo Triangles"/>
+            <Link to={'/'}>
+                <img className="header__image" src='images/triangles.png'
+                     alt="Logo Triangles"/>
+            </Link>
             {header}
             <div className="header__line"/>
         </div>

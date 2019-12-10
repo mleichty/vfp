@@ -1,5 +1,6 @@
 import React from 'react';
 import Search from "./Search";
+import {Link} from "react-router-dom";
 
 function Footer() {
 
@@ -10,10 +11,10 @@ function Footer() {
 
     return (
         <div className="footer">
-            <div className="footer__third footer__third--left">
+            <Link to={'/'} className="footer__third footer__third--left">
                 <img
                     src="images/vfp-logo.png" alt=""/>
-            </div>
+            </Link>
             <div className="footer__third footer__third--mid">
                 <h4>Popular Virgin Forests</h4>
                 <div className="footer__forestDiv">
