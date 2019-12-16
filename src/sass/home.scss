@@ -1,0 +1,17 @@
+/****************************************/
+/*Home Page styles*/
+.home {
+  background-color: var(--black);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home__video {
+  /*height: 100vh;*/
+  height: 120vh;
+  width: 100%;
+  background-color: var(--black);
+}

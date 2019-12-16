@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "GloberBook";
+  src: url("fonts/GloberBook.otf"); }
+
+@font-face {
+  font-family: "GloberBold";
+  src: url("fonts/GloberSemiBold.otf"); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: GloberBold;
+  color: var(--textColor); }
+
+body, p {
+  font-family: GloberBook; }
+
+p {
+  color: var(--textColor); }

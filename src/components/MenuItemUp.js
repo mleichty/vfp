@@ -24,25 +24,24 @@ function MenuItemUp(props) {
         triStyles = {marginLeft: "-60px"};
     }
 
-    //Why didn't UseEffect work here?
-    //said need a dependency if changing state in useEffect
-    // React.useEffect(() => {
-    //     if (props.triStyle === "triLeft") {
-    //         changeTriStyles({
-    //             marginLeft: "-60px"
-    //         });
-    //     }
-    // });
+    let menu;
+    if (props.link) {
+        menu = <NavLink className="nav__link nav__link--up"
+                        activeClassName="active"
+                        to={"/" + props.link} onMouseOver={toggleHover}
+                        onMouseOut={toggleHover}>{props.link}</NavLink>
+    } else {
+        menu =
+            <p className="nav__link nav__link--up nav__link--small" onMouseOver={toggleHover}
+                 onMouseOut={toggleHover}>
+                Menu
+            </p>
+    }
 
-    let navLink = "/" + props.link;
-
-    return(
+    return (
         <div className="nav__tri nav__tri--up" style={triStyles}>
-            <NavLink className="nav__link nav__link--up"
-                     activeClassName="active"
-                     to={navLink} onMouseOver={toggleHover}
-                     onMouseOut={toggleHover}>{props.link}</NavLink>
-            <div className="nav__tri--after" style={display}></div>
+            {menu}
+            <div className="nav__tri--after" style={display}/>
         </div>
     )
 }

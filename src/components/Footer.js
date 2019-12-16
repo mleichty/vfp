@@ -12,7 +12,7 @@ function Footer() {
     return (
         <div className="footer">
             <Link to={'/'} className="footer__third footer__third--left">
-                <img
+                <img className="footer__logo"
                     src="images/vfp-logo.png" alt=""/>
             </Link>
             <div className="footer__third footer__third--mid">

@@ -1,0 +1,83 @@
+.background {
+  background: no-repeat center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  /*position: relative;*/
+}
+
+.background__filter {
+  display: flex;
+  flex-direction: column;
+  /*position: relative;*/
+}
+
+.background__full {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.background__half {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-around;*/
+  align-items: center;
+}
+
+.background__half--content {
+  padding: 20px 20px 0 20px;
+  min-height: 100vh;
+}
+
+@media all and (min-width: 600px) {
+  .background__half--content {
+    padding: 70px 70px 0 70px;
+  }
+}
+
+@media all and (min-width: 980px) {
+  .background__half {
+    width: 60%;
+  }
+
+  .background__half--content {
+    padding: 100px 100px 0 100px;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .background__half {
+    width: 50%;
+  }
+}
+
+.background__scrollDiv {
+  display: flex;
+  flex-direction: column;
+  /*width: 100%;*/
+}
+
+@media all and (min-width: 980px) {
+  .background__scrollDiv {
+    align-items: start;
+    flex-direction: row;
+  }
+}
+
+.background__scroll {
+  position: fixed;
+  display: none;
+  /*bottom: 250px;*/
+  padding: 20px;
+  background-color: var(--blackTrans);
+  cursor: pointer;
+  color: var(--textColor);
+}
+
+.background__scroll--left {
+  left: 0;
+}
+
+.background__scroll--right {
+  right: 0;
+}

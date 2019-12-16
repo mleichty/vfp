@@ -1,0 +1,31 @@
+/****************************************/
+/*Database Page styles*/
+.database__forest {
+  height: 400px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: no-repeat center;
+  background-size: cover;
+}
+
+@media all and (min-width: 600px) {
+  .database__forest {
+    margin: 20px 70px;
+  }
+}
+
+@media all and (min-width: 980px) {
+  .database__forest {
+    /*height: 400px;*/
+    min-width: 600px;
+    margin: 50px 50px 80px 0;
+  }
+}
+
+.database__name {
+  background-color: var(--blackTrans);
+  padding: 10px;
+  text-align: center;
+}

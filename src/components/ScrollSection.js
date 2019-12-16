@@ -4,16 +4,25 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
 import {faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons';
 import fire from "./Fire";
+import {Link} from "react-router-dom";
 
 function ScrollSection(props) {
 
     const [forests, updateForests] = React.useState([]);
     const [gallery, updateGallery] = React.useState([]);
+    const [facts, updateFacts] = React.useState([]);
+    const [forestMedia, updateForestMedia] = React.useState([]);
+    const [forestId, updateForestId] = React.useState("");
+    const [leftHeight, updateLeftHeight] = React.useState(0);
     const [submitted, changeSubmitted] = React.useState("");
 
     let db = fire.firestore();
 
     React.useEffect(() => {
+        if (props.forestId) {
+            updateForestId(props.forestId);
+        }
+
         let newForests = [];
 
         function handleStatusChange(status) {
@@ -37,6 +46,15 @@ function ScrollSection(props) {
         return () => unsubscribe;
     }, [submitted]);
 
+    let forestList = forests.map((forest, idx) => {
+        return (
+            <Link to={"/" + forest.id} key={idx} className="database__forest"
+                  style={{backgroundImage: "url('" + forest.mainPic + "')"}}>
+                <h2 className="database__name">{forest.name}</h2>
+            </Link>
+        )
+    });
+
     React.useEffect(() => {
         let newGallery = [];
 
@@ -44,6 +62,7 @@ function ScrollSection(props) {
             updateGallery(status);
         }
 
+        //add if statement here whether to get all media or id media
         const unsubscribe2 = db.collection("media").get().then(
             function (snapshot) {
                 // let idx = 1;
@@ -63,21 +82,83 @@ function ScrollSection(props) {
         return () => unsubscribe2;
     }, [submitted]);
 
-    let forestList = forests.map((forest, idx) => {
-        return (
-            <div key={idx} className="database__forest" style={{backgroundImage: "url('" + forest.mainPic + "')"}}>
-                <h2 className="database__name">{forest.name}</h2>
-            </div>
-        )
-    });
-
     let galleryList = gallery.map((media, idx) => {
         return (
-            <div className="gallery" key={idx}>
+            <div className="gallery nav__padding" key={idx}>
                 <div className="gallery__picDiv">
                     <img className="gallery__pic" src={media.media} alt=""/>
                     <h3 className="gallery__title">{media.title}</h3>
                 </div>
+            </div>
+        )
+    });
+
+    React.useEffect(() => {
+        let newForestMedia = [];
+
+        function handleStatusChange(status) {
+            updateForestMedia(status);
+        }
+
+        const unsubscribe4 = db.collection("media").where("id", "==", forestId).get().then(
+            function (snapshot) {
+                snapshot.forEach(
+                    function (doc) {
+                        let item = {
+                            title: doc.data().image[0],
+                            image: doc.data().image[1]
+                        };
+                        newForestMedia.push(item);
+                    });
+
+                handleStatusChange(newForestMedia);
+            });
+        // console.log(forestId);
+
+        return () => unsubscribe4;
+    }, [forestId]);
+
+    let forestMediaList = forestMedia.map((image, idx) => {
+        return (
+            <div className="gallery gallery--forest" key={idx}>
+                <div className="gallery__picDiv">
+                    <img className="gallery__pic" src={image.image} alt=""/>
+                    <h3 className="gallery__title">{image.title}</h3>
+                </div>
+            </div>
+        )
+    });
+
+    React.useEffect(() => {
+        let newFacts = [];
+
+        function handleStatusChange(status) {
+            updateFacts(status);
+        }
+
+        const unsubscribe3 = db.collection("history").where("id", "==", forestId).get().then(
+            function (snapshot) {
+                snapshot.forEach(
+                    function (doc) {
+                        let item = {
+                            year: doc.data().fact[0],
+                            fact: doc.data().fact[1]
+                        };
+                        newFacts.push(item);
+                    });
+
+                handleStatusChange(newFacts);
+            });
+        // console.log(forestId);
+
+        return () => unsubscribe3;
+    }, [forestId]);
+
+    let factList = facts.map((fact, idx) => {
+        return (
+            <div key={idx} className="forest__fact">
+                <h2>{fact.year}</h2>
+                <p>{fact.fact}</p>
             </div>
         )
     });
@@ -87,12 +168,17 @@ function ScrollSection(props) {
     const boxRight = React.useRef(null);
 
     const showBoxes = () => {
-        $(boxLeft.current).css({
-            display: "block"
-        });
-        $(boxRight.current).css({
-            display: "block"
-        });
+        updateLeftHeight($(left.current).height());
+
+        if ($(window).width() > 980) {
+            // console.log(leftHeight);
+            $(boxLeft.current).css({
+                display: "block"
+            });
+            $(boxRight.current).css({
+                display: "block"
+            });
+        }
     };
 
     const hideBoxes = () => {
@@ -131,8 +217,11 @@ function ScrollSection(props) {
         bottom = {bottom: "250px"}
     } else if (props.bottom === "gallery") {
         let height = $(window).height() / 2;
-        console.log(height);
+        // console.log(height);
         bottom = {bottom: height}
+    } else if (props.bottom === "facts") {
+        let height = leftHeight / 2 + $(window).height();
+        bottom = {bottom: height};
     }
 
     // let databasePic = {
@@ -144,8 +233,7 @@ function ScrollSection(props) {
     let leftMove;
     let rightMove;
     let toggleScroll;
-    if (props.database) {
-        database = forestList;
+    if (props.database || props.facts) {
         leftMove =
             <div className="background__scroll background__scroll--left"
                  ref={boxLeft} style={bottom}
@@ -164,23 +252,36 @@ function ScrollSection(props) {
         }
     }
 
+    if (props.database) {
+        database = forestList;
+    }
+
+    if (props.facts) {
+        database = factList;
+    }
+
     if (props.gallery) {
-        database = galleryList;
+        if (props.forestId) {
+            database = forestMediaList;
+        } else {
+            database = galleryList;
+        }
         leftMove = <div className="background__scroll background__scroll--left"
                         ref={boxLeft} style={bottom}
                         onClick={() => shiftLeft()}>
             <FontAwesomeIcon icon={faAngleDoubleLeft} size="2x"/></div>;
-        rightMove = <div className="background__scroll background__scroll--right"
-                         ref={boxRight} style={bottom}
-                         onClick={() => shiftRight()}>
-            <FontAwesomeIcon icon={faAngleDoubleRight} size="2x"/></div>;
+        rightMove =
+            <div className="background__scroll background__scroll--right"
+                 ref={boxRight} style={bottom}
+                 onClick={() => shiftRight()}>
+                <FontAwesomeIcon icon={faAngleDoubleRight} size="2x"/></div>;
         toggleScroll = {
             overflowX: "hidden"
         }
     }
 
     return (
-        <div className="background__full" style={toggleScroll} ref={left}
+        <div className="background__scrollDiv" style={toggleScroll} ref={left}
              onMouseOver={() => showBoxes()} onMouseOut={() => hideBoxes()}>
             {leftMove}
             {rightMove}

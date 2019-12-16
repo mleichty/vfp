@@ -15,10 +15,9 @@ function Contact() {
     return (
         <div>
             <Nav/>
-            <div className="background" style={bg1}>
+            <div className="background nav__padding" style={bg1}>
                 <div className="background__filter">
                     <div className="background__full">
-                        <div className="background__half"/>
                         <div className="background__half background__half--content">
                             <BlackBox title={contact_title} h1="true"
                                       body={section1_body1} contact="true"/>

@@ -1,0 +1,17 @@
+/****************************************/
+/*Reset, root variables*/
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+:root {
+  /*theme colors*/
+  --blackTrans: rgba(35,35,35,.85);
+  --black: rgb(35,35,35);
+  --darkGreen: rgb(86,91,54);
+  --green: rgb(148,156,93);
+  --orange: rgb(217,128,45);
+  --blue: rgb(95,114,155);
+  --textColor: white; }

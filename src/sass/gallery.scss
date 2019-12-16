@@ -1,0 +1,50 @@
+/****************************************/
+/*Gallery Page styles*/
+.gallery {
+  background-color: var(--black);
+}
+
+/*for database and forest page*/
+.gallery--forest {
+  padding-top: 20px;
+  z-index: 2;
+}
+
+.gallery__picDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 99vw;
+  /*padding-bottom: 50px;*/
+  /*height: 100vh;*/
+}
+
+.gallery__pic {
+  /*height: 90%;*/
+  width: 100%;
+  display: block;
+}
+
+@media all and (min-width: 980px) {
+  .gallery {
+    /*max-height: 100vh;*/
+  }
+  .gallery__picDiv {
+    /*max-height: 100vh;*/
+    padding-bottom: 0;
+  }
+
+  .gallery__pic {
+    height: 93vh;
+    width: auto;
+  }
+}
+
+.gallery__title {
+  background-color: var(--darkGreen);
+  text-align: center;
+  /*padding: 10px 0;*/
+  line-height: 7vh;
+  height: 7vh;
+  width: 100%;
+}
