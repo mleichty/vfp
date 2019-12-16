@@ -545,8 +545,7 @@ a {
   overflow: hidden; }
 
 .home__video {
-  /*height: 100vh;*/
-  height: 120vh;
+  height: 100vh;
   width: 100%;
   background-color: var(--black); }
 
