@@ -48,7 +48,7 @@ function ScrollSection(props) {
 
     let forestList = forests.map((forest, idx) => {
         return (
-            <Link to={"/" + forest.id} key={idx} className="database__forest"
+            <Link to={"/" + forest.id} onClick={() => {$(window).scrollTop(0);}} key={idx} className="database__forest"
                   style={{backgroundImage: "url('" + forest.mainPic + "')"}}>
                 <h2 className="database__name">{forest.name}</h2>
             </Link>
@@ -214,7 +214,8 @@ function ScrollSection(props) {
 
     let bottom;
     if (props.bottom === "database") {
-        bottom = {bottom: "250px"}
+        let height = $(window).height() / 2;
+        bottom = {bottom: height}
     } else if (props.bottom === "gallery") {
         let height = $(window).height() / 2;
         // console.log(height);

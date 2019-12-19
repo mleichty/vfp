@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from "./Header";
-import Search from "./Search";
 import fire from "./Fire";
 
 function BlackBox(props) {
@@ -62,10 +61,10 @@ function BlackBox(props) {
         body3 = <p className="blackBox__multi">{props.body3}</p>
     }
 
-    let search;
-    if(props.search) {
-        search = <Search/>
-    }
+    // let search;
+    // if(props.search) {
+    //     search = <Search/>
+    // }
 
     let links;
     if(props.resources) {
@@ -76,16 +75,16 @@ function BlackBox(props) {
         </div>
     }
 
-    let contact;
-    if(props.contact) {
-        contact = <div className="form__input form__input--blackBox">
-            <input type="text" placeholder="First Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="phone" placeholder="Phone Number"/>
-            <textarea placeholder="Your Message..."/>
-        </div>
-    }
+    // let contact;
+    // if(props.contact) {
+    //     contact = <div className="form__input form__input--blackBox">
+    //         <input type="text" placeholder="First Name"/>
+    //         <input type="text" placeholder="Last Name"/>
+    //         <input type="email" placeholder="Email"/>
+    //         <input type="phone" placeholder="Phone Number"/>
+    //         <textarea placeholder="Your Message..."/>
+    //     </div>
+    // }
 
     let forest;
     if(props.forest) {
@@ -142,9 +141,9 @@ function BlackBox(props) {
             <p className="blackBox__multi">{props.body}</p>
             {body2}
             {body3}
-            {search}
+            {/*{search}*/}
             {links}
-            {contact}
+            {/*{contact}*/}
             {forest}
         </div>
     )

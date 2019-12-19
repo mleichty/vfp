@@ -2,18 +2,19 @@
   background: no-repeat center fixed;
   background-size: cover;
   min-height: 100vh;
-  /*position: relative;*/
+  //position: relative;
 }
 
 .background__filter {
   display: flex;
   flex-direction: column;
-  /*position: relative;*/
+  //position: relative;
 }
 
 .background__full {
   display: flex;
   justify-content: flex-end;
+  //position: relative;
 }
 
 .background__half {
@@ -22,11 +23,15 @@
   flex-direction: column;
   /*justify-content: space-around;*/
   align-items: center;
+  min-height: 100vh;
+}
+
+.background__half--about {
+  display: none;
 }
 
 .background__half--content {
   padding: 20px 20px 0 20px;
-  min-height: 100vh;
 }
 
 @media all and (min-width: 600px) {
@@ -43,14 +48,61 @@
   .background__half--content {
     padding: 100px 100px 0 100px;
   }
+
+  @keyframes undo {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
+  @keyframes slide {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  .background__half--about {
+    padding: 100px 0 0 100px;
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    z-index: 2;
+  }
+
+  .background__stat {
+    color: transparent;
+    font-size: 28px;
+  }
 }
 
 @media all and (min-width: 1200px) {
   .background__half {
     width: 50%;
   }
+
+  .background__half--about {
+    width: 50%;
+  }
+
+  .background__stat {
+    font-size: 50px;
+    letter-spacing: 2px;
+  }
 }
 
+@media all and (min-width: 1800px) {
+  .background__half--about {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media all and (min-height: 1000px) {
+  .background__half--about {
+    display: flex;
+    align-items: center;
+  }
+}
 .background__scrollDiv {
   display: flex;
   flex-direction: column;
@@ -59,8 +111,9 @@
 
 @media all and (min-width: 980px) {
   .background__scrollDiv {
-    align-items: start;
+    align-items: center;
     flex-direction: row;
+    min-height: 100vh;
   }
 }
 
@@ -72,6 +125,7 @@
   background-color: var(--blackTrans);
   cursor: pointer;
   color: var(--textColor);
+  z-index: 3;
 }
 
 .background__scroll--left {

@@ -16,7 +16,7 @@ function Database() {
     let section1_body2 = "Old growth forests are a refuge that can provide relief from our stressful, overly technical daily existence. This database will showcase work that helps to promote and interpret virgin forests that somehow avoided the fate of so much of America’s woodlands.";
     let section1_body3 = "If you have produced artwork (films, photographs, paintings, drawings) of an American Virgin Forest east of the Mississippi, please consider submitting your work to the database.";
 
-    let search_title = "Database Search";
+    // let search_title = "Database Search";
 
     return (
         <div>
@@ -27,7 +27,7 @@ function Database() {
                         <div className="background__half background__half--content">
                             <BlackBox title={database_title} h1="true"
                                       body={section1_body1} body2={section1_body2} body3={section1_body3}/>
-                            <BlackBox title={search_title} search="true"/>
+                            {/*<BlackBox title={search_title} search="true"/>*/}
                         </div>
                     </div>
                     <ScrollSection database="true" bottom="database"/>

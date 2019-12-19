@@ -5,7 +5,6 @@ import About from "./components/About";
 import Database from "./components/Database";
 import Gallery from "./components/Gallery";
 import Resources from "./components/Resources";
-import Contact from "./components/Contact";
 import Forest from "./components/Forest";
 import {
     HashRouter as Router,
@@ -20,6 +19,7 @@ function App() {
         let scroll = $(window).scrollTop();
         // if (scroll > 100) {
         $('.background__filter').css({
+            WebkitBackdropFilter: "blur(" + (scroll / 30) + "px)",
             backdropFilter: "blur(" + (scroll / 30) + "px)"
         })
         // } else {
@@ -34,11 +34,11 @@ function App() {
             <Router>
                 <Switch>
                     <Route path="/" exact component={Home}/>
+                    <Route path="/home" component={Home}/>
                     <Route path="/about" component={About}/>
                     <Route path="/gallery" component={Gallery}/>
                     <Route path="/database" component={Database}/>
                     <Route path="/resources" component={Resources}/>
-                    <Route path="/contact" component={Contact}/>
                     <Route path="/:id" component={Forest}/>
                 </Switch>
             </Router>

@@ -8,10 +8,12 @@ import ScrollSection from "./ScrollSection";
 function Forest(props) {
 
     const [values, setValues] = React.useState({
+        id: props.match.params.id,
         name: "",
         state: "",
         description: "",
         location: "",
+        mainPic: "",
         size: "",
         flora: "",
         fauna: "",
@@ -20,7 +22,6 @@ function Forest(props) {
         source: "",
         videoUrl: ""
     });
-
     const [submitted, changeSubmitted] = React.useState("");
 
     let db = fire.firestore();
@@ -38,6 +39,7 @@ function Forest(props) {
                     state: doc.data().state,
                     description: doc.data().description,
                     location: doc.data().location,
+                    mainPic: doc.data().mainPic,
                     size: doc.data().size,
                     flora: doc.data().flora,
                     fauna: doc.data().fauna,
@@ -52,8 +54,10 @@ function Forest(props) {
         return () => unsubscribe;
     }, [submitted]);
 
+    let facts;
+    facts = <ScrollSection facts="true" bottom="facts" forestId={props.match.params.id}/>
+
     let media;
-    //how does he want to do this? if video url doesn't exist? Or if id has media?
     if (values.videoUrl !== "") {
         media = <div className="forest__mediaDiv">
             <iframe src={values.videoUrl} title={values.name}
@@ -62,12 +66,13 @@ function Forest(props) {
                     allowFullScreen/>
         </div>
     } else {
-        media = <ScrollSection gallery="true" bottom="gallery" forestId={props.match.params.id}/>
+        media = <ScrollSection gallery="true" bottom="gallery"
+                               forestId={values.id}/>
     }
 
     //CONTENT
     let bg1 = {
-        backgroundImage: "url('images/Forest7.jpg')"
+        backgroundImage: "url('" + values.mainPic + "')"
     };
 
     return (
@@ -76,7 +81,6 @@ function Forest(props) {
             <div className="background nav__padding" style={bg1}>
                 <div className="background__filter">
                     <div className="background__full">
-                        {/*<div className="background__half"/>*/}
                         <div
                             className="background__half background__half--content">
                             <BlackBox title={values.name} h1="true"
@@ -84,8 +88,7 @@ function Forest(props) {
                                       forest={values}/>
                         </div>
                     </div>
-                    <ScrollSection facts="true" bottom="facts"
-                                   forestId={props.match.params.id}/>
+                    {facts}
                     {media}
                 </div>
             </div>

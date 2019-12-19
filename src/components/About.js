@@ -3,8 +3,28 @@ import Nav from "./Nav";
 import BlackBox from "./BlackBox";
 import Quote from "./Quote";
 import Footer from "./Footer";
+import $ from "jquery";
 
 function About() {
+
+    $(window).scroll(function () {
+        let scroll = $(window).scrollTop();
+        console.log(scroll);
+        if (scroll > 500) {
+            $('.background__stat').css({
+                textShadow: "2px 2px " + (2500 / scroll) + "px var(--orange)",
+                animationName: "slide",
+                animationDuration: "1s",
+                opacity: "1"
+            })
+        } else {
+            $('.background__stat').css({
+                animationName: "undo",
+                animationDuration: "1s",
+                opacity: "0"
+            })
+        }
+    });
 
     //CONTENT
     let bg1 = {
@@ -12,6 +32,7 @@ function About() {
     };
 
     let about_title = "Why We Started";
+    let stat = "Since 1600, 90% of the virgin forests that once covered much of the lower 48 states have been cleared away.";
     let section1_body1 = "In 2016, I was awarded a Creative Renewal Grant from the Arts Council of Indianapolis. As a filmmaker, my application purposed filming in the three virgin forests under state control in Indiana. My project involved visiting these forests during each season of the year and each time shooting eight, 8-minute tracking shots, which would basically take a full day to complete.";
     let section1_body2 = "My proposal also included the creation of a website (this one) that would host the films and information about the forests I documented. But I also wanted the website to be a platform for other’s artistic work about virgin forests in the United States east of the Mississippi.";
     let section1_body3 = "I invite you to submit your work for consideration, whether it be photographs, paintings, films, etc. My hope is that this website can grow into a repository of artistic expression about the few remaining virgin forests.      ";
@@ -38,10 +59,12 @@ function About() {
     return (
         <div>
             <Nav/>
+            <div className="background__half--about">
+                <h2 className="background__stat">{stat}</h2>
+            </div>
             <div className="background nav__padding" style={bg1}>
                 <div className="background__filter">
                     <div className="background__full">
-                        {/*<div className="background__half"/>*/}
                         <div
                             className="background__half background__half--content">
                             <BlackBox title={about_title} h1="true"

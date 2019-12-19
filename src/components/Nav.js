@@ -3,7 +3,7 @@ import MenuItemUp from "./MenuItemUp";
 import MenuItemDown from "./MenuItemDown";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 function Nav(props) {
     const [toggle, changeToggle] = React.useState(true);
@@ -33,11 +33,11 @@ function Nav(props) {
     if (toggle) {
         desktopMenu = <div className="nav nav--full">
             <div className="nav__container">
-                <MenuItemUp link={"about"}/>
-                <MenuItemDown link={"gallery"}/>
-                <MenuItemUp triStyle={"triLeft"} link={"database"}/>
-                <MenuItemDown link={"resources"}/>
-                <MenuItemUp triStyle={"triLeft"} link={"contact"}/>
+                <MenuItemUp link={"home"}/>
+                <MenuItemDown link={"about"}/>
+                <MenuItemUp triStyle={"triLeft"} link={"gallery"}/>
+                <MenuItemDown link={"database"}/>
+                <MenuItemUp triStyle={"triLeft"} link={"resources"}/>
                 <div className="nav__icon" onClick={() => closeMenu()}>
                     <FontAwesomeIcon icon={faTimes}/></div>
             </div>
@@ -66,16 +66,18 @@ function Nav(props) {
         <nav>
             {desktopMenu}
             <div className="nav__mobile">
-                <div className="nav__logoDiv">
+                <Link to={'/'} className="nav__logoDiv">
                     <img className="nav__logo" src="images/vfp-logo.png"
                          alt=""/>
-                </div>
+                </Link>
                 <div className="nav__hamburgerDiv"
                      onClick={() => toggleMobile()}>
                     <FontAwesomeIcon icon={faBars} className="nav__hamburger"
                                      size='lg'/>
                 </div>
                 <div className="nav__mobileLinks" style={mobileMenu}>
+                    <NavLink to="/home"
+                             className="nav__mobileLink">Home</NavLink>
                     <NavLink to="/about"
                              className="nav__mobileLink">About</NavLink>
                     <NavLink to="/gallery"
@@ -84,8 +86,6 @@ function Nav(props) {
                              className="nav__mobileLink">Database</NavLink>
                     <NavLink to="/resources"
                              className="nav__mobileLink">Resources</NavLink>
-                    <NavLink to="/contact"
-                             className="nav__mobileLink">Contact</NavLink>
                 </div>
             </div>
         </nav>
