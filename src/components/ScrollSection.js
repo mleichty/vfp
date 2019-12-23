@@ -86,7 +86,9 @@ function ScrollSection(props) {
         return (
             <div className="gallery nav__padding" key={idx}>
                 <div className="gallery__picDiv">
+                    <div className="gallery__imageDiv">
                     <img className="gallery__pic" src={media.media} alt=""/>
+                    </div>
                     <h3 className="gallery__title">{media.title}</h3>
                 </div>
             </div>
