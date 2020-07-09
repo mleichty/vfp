@@ -471,7 +471,7 @@ a {
 
 /****************************************/
 /*Form styles*/
-.form__input input, .form__input textarea {
+.form__input input, .form__input textarea, .form__input button {
   color: var(--textColor);
   background: transparent;
   border: 2px solid var(--blue);
@@ -479,7 +479,7 @@ a {
   /*margin: 5px;*/
   margin: 10px 0; }
 
-.form__input input:focus, .form__input textarea:focus {
+.form__input input:focus, .form__input textarea:focus, .form__input button:focus {
   outline: none; }
 
 .form__input input::-webkit-input-placeholder, .form__input textarea::-webkit-input-placeholder {
@@ -501,7 +501,7 @@ a {
   width: 100%;
   height: 200px; }
 
-.form__input input[type=submit]:hover {
+.form__input input[type=submit]:hover, .form__input button:hover {
   cursor: pointer;
   background-color: var(--blue); }
 

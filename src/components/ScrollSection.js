@@ -138,13 +138,13 @@ function ScrollSection(props) {
             updateFacts(status);
         }
 
-        const unsubscribe3 = db.collection("history").where("id", "==", forestId).get().then(
+        const unsubscribe3 = db.collection("history").where("id", "==", forestId).orderBy("factYear").get().then(
             function (snapshot) {
                 snapshot.forEach(
                     function (doc) {
                         let item = {
-                            year: doc.data().fact[0],
-                            fact: doc.data().fact[1]
+                            year: doc.data().factYear,
+                            fact: doc.data().fact
                         };
                         newFacts.push(item);
                     });

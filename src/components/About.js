@@ -9,7 +9,7 @@ function About() {
 
     $(window).scroll(function () {
         let scroll = $(window).scrollTop();
-        console.log(scroll);
+        // console.log(scroll);
         if (scroll > 500) {
             $('.background__stat').css({
                 textShadow: "2px 2px " + (2500 / scroll) + "px var(--orange)",
