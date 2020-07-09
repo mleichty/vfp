@@ -25,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,6 +38,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Owner\Documents\IUPUI stuff\Fall 2019\N490\vfp\src" />
       <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\src\images" />
       <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\public" />
       <recent name="C:\Users\Owner\Documents\IUPUI stuff\N490\vfp\src\video" />
@@ -108,7 +109,15 @@
       <workItem from="1576866529179" duration="6337000" />
       <workItem from="1576874046017" duration="646000" />
       <workItem from="1577073976755" duration="4331000" />
-      <workItem from="1577112527057" duration="1942000" />
+      <workItem from="1577112527057" duration="3045000" />
+      <workItem from="1579972165181" duration="664000" />
+      <workItem from="1580431379281" duration="2035000" />
+      <workItem from="1580754820702" duration="616000" />
+      <workItem from="1580927678375" duration="7000" />
+      <workItem from="1582573879236" duration="1000000" />
+      <workItem from="1583617277454" duration="1443000" />
+      <workItem from="1594132626971" duration="3219000" />
+      <workItem from="1594303464722" duration="6136000" />
     </task>
     <servers />
   </component>

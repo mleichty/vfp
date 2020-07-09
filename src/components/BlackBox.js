@@ -1,12 +1,16 @@
 import React from 'react';
 import Header from "./Header";
 import fire from "./Fire";
+import Search from "./Search";
 
 function BlackBox(props) {
 
     const [resources, updateResources] = React.useState([]);
     const [submitted, changeSubmitted] = React.useState("");
 
+    //should I put this resources call in a different component
+    //since don't want triggering every time blackbox is called?
+    //OR maybe put in an if statement?
     let db = fire.firestore();
 
     React.useEffect(() => {
@@ -61,10 +65,10 @@ function BlackBox(props) {
         body3 = <p className="blackBox__multi">{props.body3}</p>
     }
 
-    // let search;
-    // if(props.search) {
-    //     search = <Search/>
-    // }
+    let search;
+    if(props.search) {
+        search = <Search/>
+    }
 
     let links;
     if(props.resources) {
@@ -141,7 +145,7 @@ function BlackBox(props) {
             <p className="blackBox__multi">{props.body}</p>
             {body2}
             {body3}
-            {/*{search}*/}
+            {search}
             {links}
             {/*{contact}*/}
             {forest}
