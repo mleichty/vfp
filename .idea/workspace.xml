@@ -25,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../React/firebasetemplate" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -117,7 +117,8 @@
       <workItem from="1582573879236" duration="1000000" />
       <workItem from="1583617277454" duration="1443000" />
       <workItem from="1594132626971" duration="3219000" />
-      <workItem from="1594303464722" duration="29773000" />
+      <workItem from="1594303464722" duration="32401000" />
+      <workItem from="1594391619825" duration="10440000" />
     </task>
     <servers />
   </component>
