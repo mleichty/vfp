@@ -3,48 +3,56 @@ import $ from "jquery";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
 import {faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons';
-import fire from "./Fire";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import Load from "./Load";
 
 function ScrollSection(props) {
 
-    const [forests, updateForests] = React.useState([]);
-    const [gallery, updateGallery] = React.useState([]);
-    const [facts, updateFacts] = React.useState([]);
-    const [forestMedia, updateForestMedia] = React.useState([]);
-    const [forestId, updateForestId] = React.useState("");
     const [leftHeight, updateLeftHeight] = React.useState(0);
-    const [submitted, changeSubmitted] = React.useState("");
+    const forests = useSelector(state => state.forestsFire);
+    const gallery = useSelector(state => state.mediaFire);
+    const facts = useSelector(state => state.historyFire);
 
-    let db = fire.firestore();
+    //MAP DATABASE ITEMS
+    let forestMediaList;
+    let factList;
+    if (props && props.forestId) {
+        //stored id as forestId in redux, use filter not find to create array
+        let forestMedia = gallery.filter(media => media.forestId === props.forestId);
+        let forestFacts = facts.filter(fact => fact.forestId === props.forestId).sort((a,b) => {
+                return a.year - b.year;
+            }
+        );
 
-    React.useEffect(() => {
-        if (props.forestId) {
-            updateForestId(props.forestId);
-        }
-
-        let newForests = [];
-
-        function handleStatusChange(status) {
-            updateForests(status);
-        }
-
-        const unsubscribe = db.collection("forests").get().then(
-            function (snapshot) {
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            name: doc.data().name,
-                            mainPic: doc.data().mainPic,
-                            id: doc.id
-                        };
-                        newForests.push(item);
-                    });
-
-                handleStatusChange(newForests);
+        if(forestMedia) {
+            forestMediaList = forestMedia.map((image, idx) => {
+                return (
+                    <div className="gallery gallery--forest" key={idx}>
+                        <div className="gallery__picDiv">
+                            <img className="gallery__pic" src={image.media} alt=""/>
+                            <h3 className="gallery__title">{image.title}</h3>
+                        </div>
+                    </div>
+                )
             });
-        return () => unsubscribe;
-    }, [submitted]);
+        } else {
+            forestMediaList = <Load/>
+        }
+
+        if(forestFacts) {
+            factList = forestFacts.map((fact, idx) => {
+                return (
+                    <div key={idx} className="forest__fact">
+                        <h2>{fact.year}</h2>
+                        <p>{fact.fact}</p>
+                    </div>
+                )
+            });
+        } else {
+            factList = <Load/>
+        }
+    }
 
     let forestList = forests.map((forest, idx) => {
         return (
@@ -54,33 +62,6 @@ function ScrollSection(props) {
             </Link>
         )
     });
-
-    React.useEffect(() => {
-        let newGallery = [];
-
-        function handleStatusChange(status) {
-            updateGallery(status);
-        }
-
-        //add if statement here whether to get all media or id media
-        const unsubscribe2 = db.collection("media").get().then(
-            function (snapshot) {
-                // let idx = 1;
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            title: doc.data().image[0],
-                            media: doc.data().image[1],
-                            id: doc.id
-                        };
-                        newGallery.push(item);
-                        // idx++;
-                    });
-
-                handleStatusChange(newGallery);
-            });
-        return () => unsubscribe2;
-    }, [submitted]);
 
     let galleryList = gallery.map((media, idx) => {
         return (
@@ -95,76 +76,7 @@ function ScrollSection(props) {
         )
     });
 
-    React.useEffect(() => {
-        let newForestMedia = [];
-
-        function handleStatusChange(status) {
-            updateForestMedia(status);
-        }
-
-        const unsubscribe4 = db.collection("media").where("id", "==", forestId).get().then(
-            function (snapshot) {
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            title: doc.data().image[0],
-                            image: doc.data().image[1]
-                        };
-                        newForestMedia.push(item);
-                    });
-
-                handleStatusChange(newForestMedia);
-            });
-        // console.log(forestId);
-
-        return () => unsubscribe4;
-    }, [forestId]);
-
-    let forestMediaList = forestMedia.map((image, idx) => {
-        return (
-            <div className="gallery gallery--forest" key={idx}>
-                <div className="gallery__picDiv">
-                    <img className="gallery__pic" src={image.image} alt=""/>
-                    <h3 className="gallery__title">{image.title}</h3>
-                </div>
-            </div>
-        )
-    });
-
-    React.useEffect(() => {
-        let newFacts = [];
-
-        function handleStatusChange(status) {
-            updateFacts(status);
-        }
-
-        const unsubscribe3 = db.collection("history").where("id", "==", forestId).orderBy("factYear").get().then(
-            function (snapshot) {
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            year: doc.data().factYear,
-                            fact: doc.data().fact
-                        };
-                        newFacts.push(item);
-                    });
-
-                handleStatusChange(newFacts);
-            });
-        // console.log(forestId);
-
-        return () => unsubscribe3;
-    }, [forestId]);
-
-    let factList = facts.map((fact, idx) => {
-        return (
-            <div key={idx} className="forest__fact">
-                <h2>{fact.year}</h2>
-                <p>{fact.fact}</p>
-            </div>
-        )
-    });
-
+    //CREATE SCROLL EFFECT
     const left = React.useRef(null);
     const boxLeft = React.useRef(null);
     const boxRight = React.useRef(null);
@@ -227,11 +139,7 @@ function ScrollSection(props) {
         bottom = {bottom: height};
     }
 
-    // let databasePic = {
-    //     backgroundImage: "url('images/Forest5.jpg')"
-    // };
-    // let forestTitle = "Wesselman's Woods";
-
+    //ASSIGN VALUES BASED ON PROPS
     let database;
     let leftMove;
     let rightMove;

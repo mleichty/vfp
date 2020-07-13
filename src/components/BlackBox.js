@@ -1,41 +1,11 @@
 import React from 'react';
 import Header from "./Header";
-import fire from "./Fire";
 import Search from "./Search";
+import {useSelector} from "react-redux";
 
 function BlackBox(props) {
 
-    const [resources, updateResources] = React.useState([]);
-    const [submitted, changeSubmitted] = React.useState("");
-
-    //should I put this resources call in a different component
-    //since don't want triggering every time blackbox is called?
-    //OR maybe put in an if statement?
-    let db = fire.firestore();
-
-    React.useEffect(() => {
-        let newResources = [];
-
-        function handleStatusChange(status) {
-            updateResources(status);
-        }
-
-        const unsubscribe = db.collection("resources").orderBy('name').get().then(
-            function (snapshot) {
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            name: doc.data().name,
-                            link: doc.data().link,
-                            id: doc.id
-                        };
-                        newResources.push(item);
-                    });
-
-                handleStatusChange(newResources);
-            });
-        return () => unsubscribe;
-    }, [submitted]);
+    const resources = useSelector(state => state.resourcesFire);
 
     let resourceList = resources.map((resource, idx) => {
         return (

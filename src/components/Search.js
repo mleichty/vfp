@@ -1,57 +1,23 @@
 import React from 'react';
-import fire from "./Fire";
 import lunr from 'lunr';
 import {Link} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 function Search() {
-    const [forests, updateForests] = React.useState([]);
-    const [submitted, changeSubmitted] = React.useState("");
-    const [index, updateIndex] = React.useState([]);
     const [input, updateInput] = React.useState("");
     const [results, updateResults] = React.useState(null);
-
-    let db = fire.firestore();
-
-    React.useEffect(() => {
-        let newForests = [];
-
-        function handleStatusChange(status) {
-            const newIndex = lunr(function() {
-                this.field('name');
-                this.field('description');
-                this.field('fauna');
-                this.field('flora');
-                this.field('habitats');
-                this.field('state');
-                this.field('threats');
-                this.ref('id');
-                status.forEach(forest => {this.add(forest)}, this);
-            });
-            updateIndex(newIndex);
-            updateForests(status);
-        }
-
-        const unsubscribe = db.collection("forests").orderBy('name').get().then(
-            function (snapshot) {
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            name: doc.data().name,
-                            description: doc.data().description,
-                            fauna: doc.data().fauna,
-                            flora: doc.data().flora,
-                            habitats: doc.data().habitats,
-                            state: doc.data().state,
-                            threats: doc.data().threats,
-                            id: doc.id
-                        };
-                        newForests.push(item);
-                    });
-
-                handleStatusChange(newForests);
-            });
-        return () => unsubscribe;
-    }, [submitted]);
+    const forests = useSelector(state => state.forestsFire);
+    const index = lunr(function() {
+        this.field('name');
+        this.field('description');
+        this.field('fauna');
+        this.field('flora');
+        this.field('habitats');
+        this.field('state');
+        this.field('threats');
+        this.ref('id');
+        forests.forEach(forest => {this.add(forest)});
+    });
 
     const handleChange = () => event => {
         updateInput(event.target.value);

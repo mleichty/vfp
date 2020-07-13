@@ -36,7 +36,17 @@ function App() {
                 let item = {
                     name: doc.data().name,
                     mainPic: doc.data().mainPic,
-                    id: doc.id
+                    id: doc.id,
+                    state: doc.data().state,
+                    description: doc.data().description,
+                    location: doc.data().location,
+                    size: doc.data().size,
+                    flora: doc.data().flora,
+                    fauna: doc.data().fauna,
+                    threats: doc.data().threats,
+                    habitats: doc.data().habitats,
+                    source: doc.data().source,
+                    videoUrl: doc.data().videoUrl
                 };
                 newItems.push(item);
             });

@@ -1,9 +1,5 @@
 const initState = {
     change: false,
-    signedIn: false,
-    user: {
-        name: ""
-    },
     forestsFire: [],
     historyFire: [],
     mediaFire: [],

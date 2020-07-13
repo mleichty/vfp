@@ -1,12 +1,21 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
-import fire from "./Fire";
 import $ from 'jquery';
+import {useSelector} from "react-redux";
+// import Search from "./Search";
 
 function Footer() {
 
-    const [forests, updateForests] = React.useState([]);
-    const [submitted, changeSubmitted] = React.useState("");
+    const forests = useSelector(state => state.forestsFire);
+
+    let forestList = forests.map((forest, idx) => {
+        return (
+            <Link to={'/' + forest.id} key={idx} className="footer__forest" onClick={() => reload()}
+                  style={{backgroundImage: "url('" + forest.mainPic + "')"}}>
+            </Link>
+        )
+    });
+    if (forestList.length > 3) {forestList.length = 3}
 
     let year;
     if(new Date().getFullYear() !== 2019) {
@@ -16,38 +25,6 @@ function Footer() {
     const reload = () => {
         setTimeout(() => {window.location.reload(); $(window).scrollTop(0);}, 200);
     };
-
-    let db = fire.firestore();
-
-    React.useEffect(() => {
-        let newForests = [];
-
-        function handleStatusChange(status) {
-            updateForests(status);
-        }
-
-        const unsubscribe = db.collection("forests").limit(3).get().then(
-            function (snapshot) {
-                snapshot.forEach(
-                    function (doc) {
-                        let item = {
-                            mainPic: doc.data().mainPic,
-                            id: doc.id
-                        };
-                        newForests.push(item);
-                    });
-                handleStatusChange(newForests);
-            });
-        return () => unsubscribe;
-    }, [submitted]);
-
-    let forestList = forests.map((forest, idx) => {
-        return (
-            <Link to={'/' + forest.id} key={idx} className="footer__forest" onClick={() => reload()}
-                  style={{backgroundImage: "url('" + forest.mainPic + "')"}}>
-            </Link>
-        )
-    });
 
     return (
         <div className="footer">
